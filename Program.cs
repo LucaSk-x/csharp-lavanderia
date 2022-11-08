@@ -1,79 +1,26 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+
 Console.WriteLine("Hello, World!");
 
+//Una lavanderia è aperta 24 ore su 24 e permette ai clienti di servizi autonomamente di 5 Lavatrici e 5 Asciugatrici.
+//I clienti che usufruiscono delle macchine, possono effettuare diversi programmi di lavaggio e asciugatura ognuno con un costo diverso (in gettoni) e di una specifica durata.
+//Ogni gettone costa 0.50 centesimi di euro e ogni lavaggio consuma detersivo e ammorbidente dai serbatoi della lavatrice.
+//Ogni lavatrice può tenere fino ad un massimo di 1 litro di detersivo e 500ml di ammorbidente.
 
-Random rd = new Random();
+//I programmi di lavaggio hanno quindi queste caratteristiche
+//Rinfrescante, costo di 2 gettoni, durata di 20 minuti, consumo di 20ml di detersivo e 5ml di ammorbidente.
+//Rinnovante, costo di 3 gettoni, durata di 40 minuti, consumo di 40ml di detersivo e 10ml di ammorbidente.
+//Sgrassante, costo di 4 gettoni, durata di 60 minuti, consumo di 60 ml di detersivo e 15ml di ammorbidente.
+//Le asciugatrici invece hanno soltanto due programmi di asciugatura, rapido 2 gettoni e intenso 4 gettoni della durata di 30 minuti e 60 minuti rispettivamente.
 
-Macchina Lavatrice1 = new Macchina(rd.Next(5, 30), true, rd.Next(20), rd.Next(500), rd.Next(1000));
-Macchina Lavatrice2 = new Macchina(rd.Next(5, 30), false, rd.Next(20), rd.Next(500), rd.Next(1000));
-Macchina Lavatrice3 = new Macchina(rd.Next(5, 30), false, rd.Next(20), rd.Next(500), rd.Next(1000));
-Macchina Lavatrice4 = new Macchina(rd.Next(5, 30), false, rd.Next(20), rd.Next(500), rd.Next(1000));
-Macchina Lavatrice5 = new Macchina(rd.Next(5, 30), true, rd.Next(20), rd.Next(500), rd.Next(1000));
+//Si richiede di creare un sistema di controllo in grado di riportare lo stato della lavanderia, in particolare si vuole richiedere:
+//1 - Lo stato generale di utilizzo delle macchine: un elenco di tutte le macchine che semplicemente dica quali sono in funzione e quali non lo sono (in lavaggio / asciugatura oppure ferme)
+//2 - Possa essere richiesto il dettaglio di una macchina:
+//Tutte le informazioni relative alla macchina, nome del macchinario, stato del macchinario (in funzione o no), tipo di lavaggio in corso, quantità di detersivo presente (se una lavatrice),
+//durata del lavaggio, tempo rimanente alla fine del lavaggio.
+//3 - l’attuale incasso generato dall’utilizzo delle macchine.
 
-Macchina Asciugatrice1 = new Macchina(rd.Next(5, 30), true, rd.Next(20));
-Macchina Asciugatrice2 = new Macchina(rd.Next(5, 30), false, rd.Next(20));
-Macchina Asciugatrice3 = new Macchina(rd.Next(5, 30), true, rd.Next(20));
-Macchina Asciugatrice4 = new Macchina(rd.Next(5, 30), false, rd.Next(20));
-Macchina Asciugatrice5 = new Macchina(rd.Next(5, 30), true, rd.Next(20));
-
-Console.WriteLine(Lavatrice5.Ammorbidente);
-Console.WriteLine(Lavatrice5.Gettoni);
-Console.WriteLine(Lavatrice1.Ammorbidente);
-Console.WriteLine(Asciugatrice5.Gettoni);
-Console.WriteLine(Asciugatrice3.Gettoni);
-
-
-public class Macchina
-{
-    private int gettoni;
-    private bool inUso;
-    private int tempo;
-    private int ammorbidente;
-    private int detersivo;
-
-
-    //Lavatrice
-    public Macchina(int gettoni, bool inUso, int tempo, int ammorbidente, int detersivo)
-    {
-        this.Gettoni = gettoni;
-        this.InUso = inUso;
-        this.Tempo = tempo;
-        this.Ammorbidente = ammorbidente;
-        this.Detersivo = detersivo;
-    }
-
-    //Asciugatrice
-    public Macchina(int gettoni, bool inUso, int tempo)
-    {
-        this.Gettoni = gettoni;
-        this.InUso = inUso;
-        this.Tempo = tempo;
-    }
-
-
-    //Gettoni
-    public int Gettoni { get; set; }
-
-    //InUso
-    public bool InUso { get; set; }
-
-    //Tempo
-    public int Tempo { get; set; }
-
-    //Ammorbidente
-    public int Ammorbidente { get; set; }
-
-    //Detersivo
-    public int Detersivo { get; set; }
-
-    public string stampaStato()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            if (i < 5)
-            {
-                if (Lavatrice1.InUso == true)
-            }
-        }
-    }
-}
+Lavanderia lavanderia = new Lavanderia();
+lavanderia.StampaMacchine();
+lavanderia.InterrogaMacchine();
